@@ -1,16 +1,29 @@
+import java.util.*
+
 fun main() {
 
-    val strs = arrayOf("flower", "flow", "flight")
+    val s = "(){}[]"
 
-    fun longestCommonPrefix(strs: Array<String>): String {
-        var prefix = strs[0]
-        for (i in 1..strs.size - 1) {
-            while (strs[i].indexOf(prefix) != 0) {
-                prefix = prefix.substring(0, prefix.length - 1)
-                if (prefix == "") return ""
+    fun isValid(s: String): Boolean {
+        val stack = Stack<Char>()
+        for (i in s.indices) {
+            val char = s[i]
+            if (char == '(' || char == '{' || char == '[') {
+                stack.push(char)
+            } else {
+                if (stack.isEmpty()) {
+                    return false
+                }
+                val stackPop = stack.pop()
+                if ((char == '}' && stackPop != '{') ||
+                    (char == ']' && stackPop != '[') ||
+                    (char == ')' && stackPop != '(')
+                ) {
+                    return false
+                }
             }
         }
-        return prefix
+        return stack.empty()
     }
-    longestCommonPrefix(strs)
+    println(isValid(s))
 }
