@@ -1,29 +1,12 @@
-import java.util.*
-
 fun main() {
+    val s1 = "Hello World"
+    val s2 = "   fly me   to   the moon  "
+    val s3 = "luffy is still joyboy"
 
-    val s = "(){}[]"
-
-    fun isValid(s: String): Boolean {
-        val stack = Stack<Char>()
-        for (i in s.indices) {
-            val char = s[i]
-            if (char == '(' || char == '{' || char == '[') {
-                stack.push(char)
-            } else {
-                if (stack.isEmpty()) {
-                    return false
-                }
-                val stackPop = stack.pop()
-                if ((char == '}' && stackPop != '{') ||
-                    (char == ']' && stackPop != '[') ||
-                    (char == ')' && stackPop != '(')
-                ) {
-                    return false
-                }
-            }
-        }
-        return stack.empty()
+    fun lengthOfLastWord(s: String): Int {
+        return (s.trim().substring(s.trim().lastIndexOf(" ")+1, s.trim().length)).length
     }
-    println(isValid(s))
+
+    println(lengthOfLastWord(s3))
 }
+
