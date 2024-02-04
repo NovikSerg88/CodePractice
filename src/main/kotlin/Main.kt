@@ -1,12 +1,23 @@
 fun main() {
-    val s1 = "Hello World"
-    val s2 = "   fly me   to   the moon  "
-    val s3 = "luffy is still joyboy"
+    val digits = intArrayOf(9, 9)
 
-    fun lengthOfLastWord(s: String): Int {
-        return (s.trim().substring(s.trim().lastIndexOf(" ")+1, s.trim().length)).length
+    fun plusOne(digits: IntArray): IntArray {
+        for (i in digits.size - 1 downTo 0) {
+            if (digits[i] != 9) {
+                digits[i]++
+                return digits
+            } else {
+                digits[i] = 0
+                if (i == 0) {
+                    val newDigits = IntArray(digits.lastIndex + 2)
+                    newDigits[0] = 1
+                    return newDigits
+                }
+            }
+        }
+        return digits
     }
-
-    println(lengthOfLastWord(s3))
+    println(plusOne(digits).asList())
 }
+
 
